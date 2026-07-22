@@ -1,69 +1,150 @@
-🚗 ParkSense
-Real-Time Smart Parking Detection System
+# 🚗 ParkSense AI
+### Real-Time Smart Parking Detection System
 
-🔴 Live Demo: https://smart-parking-management-1.onrender.com/
+> An AI-powered computer vision system that detects parking slot occupancy in real time using OpenCV and streams live parking availability through a web application.
 
-📂 GitHub: https://github.com/milandhal/Smart_Parking_Management
+---
 
-📌 Overview
+## 🔴 Live Demo
 
-ParkSense AI is a real-time computer vision-based smart parking management system that detects vehicle occupancy in parking slots using Python and OpenCV. The system processes parking lot video footage, analyzes predefined parking regions, and displays live slot availability through a deployed web application.
+**Application:** https://smart-parking-management-1.onrender.com/
 
-This project demonstrates end-to-end development — from computer vision implementation to cloud deployment.
+---
 
-🎯 Key Features
+## 📂 GitHub Repository
 
-🚘 Real-time parking slot occupancy detection
+**Repository:** https://github.com/milandhal/Smart_Parking_Management
 
-🟢🟥 Visual indication of free and occupied spaces
+---
 
-📊 Live free-slot counter display
+# 📌 Overview
 
-🌐 Web-based live streaming interface
+ParkSense AI is a real-time smart parking management system that leverages **Computer Vision** to automatically detect occupied and vacant parking spaces from parking lot video footage.
 
-⚡ Optimized and lightweight processing pipeline
+The system processes each video frame, analyzes predefined parking regions, and continuously updates parking slot availability through an interactive web interface.
 
-🧠 Tech Stack
+The project demonstrates a complete AI deployment pipeline—from image processing and parking detection to cloud deployment using Flask and Render.
 
-Python
+---
 
-OpenCV
+# 🎯 Objectives
 
-NumPy
+- Automate parking space monitoring.
+- Reduce manual supervision.
+- Improve parking space utilization.
+- Provide live parking availability.
+- Demonstrate practical Computer Vision deployment.
 
-CVZone
+---
 
-Flask
+# ✨ Key Features
 
-Gunicorn
+- 🚘 Real-time parking slot occupancy detection
+- 🟢 Live visualization of vacant parking spaces
+- 🔴 Detection of occupied parking slots
+- 📊 Dynamic free-slot counter
+- 🌐 Web-based live streaming interface
+- ⚡ Lightweight and optimized processing pipeline
+- ☁️ Cloud deployment using Render
 
-Render (Cloud Deployment)
+---
 
-🛠️ System Workflow
+# 🧠 Technology Stack
 
-Video feed is captured from a parking lot dataset.
+## Programming Language
+- Python
 
-Image preprocessing pipeline:
+## Computer Vision
+- OpenCV
+- CVZone
+- NumPy
 
-Grayscale conversion
+## Backend
+- Flask
+- Gunicorn
 
-Gaussian blur
+## Deployment
+- Render
 
-Adaptive thresholding
+---
 
-Median filtering
+# ⚙️ System Workflow
 
-Dilation
+```
+Parking Video
+       │
+       ▼
+Frame Extraction
+       │
+       ▼
+Image Preprocessing
+       │
+       ▼
+Parking Slot Segmentation
+       │
+       ▼
+Pixel Density Analysis
+       │
+       ▼
+Occupancy Detection
+       │
+       ▼
+Live Web Streaming
+```
 
-Each predefined parking slot is cropped and analyzed.
+---
 
-Pixel intensity is calculated using cv2.countNonZero().
+# 🖼 Image Processing Pipeline
 
-If pixel count is below threshold → Slot marked Free.
+Each frame undergoes multiple preprocessing stages before parking slot analysis.
 
-Live counter updates and is streamed via web interface.
+### 1️⃣ Grayscale Conversion
+Converts RGB images into grayscale for efficient processing.
 
-📂 Project Structure
+### 2️⃣ Gaussian Blur
+Removes image noise and smooths the frame.
+
+### 3️⃣ Adaptive Thresholding
+Separates foreground from background under varying lighting conditions.
+
+### 4️⃣ Median Filtering
+Reduces salt-and-pepper noise.
+
+### 5️⃣ Dilation
+Enhances detected regions for accurate occupancy analysis.
+
+---
+
+# 🧠 Parking Detection Algorithm
+
+Each parking slot is represented by predefined coordinates.
+
+For every frame:
+
+- Crop the parking region.
+- Apply preprocessing.
+- Count active pixels using:
+
+```python
+cv2.countNonZero()
+```
+
+Decision logic:
+
+- **Pixel Count < Threshold → Free Slot**
+- **Pixel Count ≥ Threshold → Occupied Slot**
+
+The slot color changes dynamically:
+
+🟢 Green → Available
+
+🔴 Red → Occupied
+
+---
+
+# 📂 Project Structure
+
+```
 Smart_Parking_Management/
 │
 ├── app.py
@@ -71,61 +152,125 @@ Smart_Parking_Management/
 ├── carPark.mp4
 ├── requirements.txt
 ├── Procfile
+├── static/
+├── templates/
 └── README.md
+```
 
-🚀 Deployment
+---
 
-The application is deployed on Render using Gunicorn for production serving.
+# 🚀 Installation
 
-Deployment Steps:
+## Clone Repository
 
-Push project to GitHub
+```bash
+git clone https://github.com/milandhal/Smart_Parking_Management.git
 
-Connect repository to Render
+cd Smart_Parking_Management
+```
 
-Set:
+---
 
-Build Command: pip install -r requirements.txt
+## Install Dependencies
 
-Start Command: gunicorn app:app
+```bash
+pip install -r requirements.txt
+```
 
-Deploy and access via public URL
+---
 
-📊 Performance Metrics
+## Run Application
 
-🎯 ~95% parking slot detection accuracy
+```bash
+python app.py
+```
 
-⚡ Real-time processing with optimized threshold tuning
+The application will start locally and can be accessed in your browser.
 
-📉 Reduced manual monitoring through automated detection
+---
 
-💼 Why This Project Matters
+# ☁️ Deployment
 
-This project showcases:
+The application is deployed on **Render** using **Gunicorn**.
 
-Real-time computer vision implementation
+### Build Command
 
-Practical smart mobility solution
+```bash
+pip install -r requirements.txt
+```
 
-Backend deployment using Flask & Gunicorn
+### Start Command
 
-Cloud hosting and web streaming integration
+```bash
+gunicorn app:app
+```
 
-It reflects strong problem-solving skills in computer vision and applied AI systems.
+---
 
-🔮 Future Enhancements
+# 📊 Performance
 
-YOLO-based vehicle detection integration
+| Metric | Value |
+|---------|-------|
+| Detection Accuracy | ~95% |
+| Processing | Real-Time |
+| Framework | Flask |
+| Deployment | Render |
 
-Live CCTV camera feed support
+---
 
-Parking analytics dashboard
+# 💼 Project Highlights
 
-Database integration for historical tracking
+This project demonstrates practical experience in:
 
-👨‍💻 Author
+- Computer Vision
+- Image Processing
+- Real-Time Video Analytics
+- Python Development
+- Flask Web Development
+- Cloud Deployment
+- AI-Based Smart Mobility Solutions
 
-Milan Dhal
-Machine Learning & Analytics Enthusiast
+---
 
+# 🌍 Real-World Applications
 
+- Smart Parking Systems
+- Shopping Malls
+- Airports
+- Universities
+- Hospitals
+- Corporate Campuses
+- Smart Cities
+
+---
+
+# 🔮 Future Enhancements
+
+- 🚗 YOLOv8-based vehicle detection
+- 📹 Live CCTV camera integration
+- 🗺 Parking analytics dashboard
+- 🗄 Database integration
+- 📱 Mobile application
+- 🔔 Real-time parking notifications
+- ☁️ IoT-enabled smart parking infrastructure
+
+---
+
+# 📄 License
+
+This project is intended for educational and research purposes.
+
+---
+
+# 👨‍💻 Author
+
+## Milan Dhal
+
+**Machine Learning | Computer Vision | Data Analytics | Full Stack Development**
+
+### GitHub
+https://github.com/milandhal
+
+---
+
+⭐ **If you found this project useful, consider giving it a star on GitHub!**
